@@ -102,7 +102,11 @@ EOF
 }
 
 
-pyver=$(python -c 'import platform;print ".".join(platform.python_version().split(".")[:2])')
+if [[ -n "$(which python3)" ]]; then
+    pyver=$(python3 -c 'import platform;print ".".join(platform.python_version().split(".")[:2])')
+else
+    pyver=$(python -c 'import platform;print ".".join(platform.python_version().split(".")[:2])')
+fi
 mkdir -p $VENVBURRITO/{bin,libexec,lib/python$pyver/site-packages}
 test -d $HOME/.virtualenvs || mkdir $HOME/.virtualenvs
 
