@@ -9,7 +9,6 @@ __version__ = "2.7.1"
 import sys
 import os
 import csv
-import urllib2
 import shutil
 import glob
 import tempfile
@@ -21,6 +20,11 @@ try:
 except ImportError:  # Python < 2.5
     import sha
     sha1 = sha.new
+
+try:
+    from urllib2 import urlopen
+except ImportError:
+    from urllib import urlopen
 
 try:
     import subprocess
@@ -68,7 +72,7 @@ def download(url, digest):
     name = url.split('/')[-1]
     print "  Downloading", name, "…"
     try:
-        download_data = urllib2.urlopen(url).read()
+        download_data = urlopen(url).read()
     except Exception, e:
         sys.stderr.write("\nERROR - Unable to download %s: %s %s\n"
                          % (url, type(e), str(e)))
@@ -182,7 +186,7 @@ def upgrade_package(filename, name, version):
 def check_versions(selfcheck=True):
     """Return packages which can be upgraded."""
     try:
-        fp = urllib2.urlopen(VERSIONS_URL)
+        fp = urlopen(VERSIONS_URL)
     except Exception, e:
         sys.stderr.write("\nERROR - Couldn't open versions file at %s: %s %s\n"
                          % (VERSIONS_URL, type(e), str(e)))

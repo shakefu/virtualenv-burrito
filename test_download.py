@@ -1,8 +1,12 @@
 # encoding: utf-8
 import os
-import urllib2
 import csv
 import hashlib
+
+try:
+    from urllib2 import urlopen, HTTPError
+except ImportError:
+    from urllib import urlopen, HTTPError
 
 
 PYPI_MD5_URL = 'https://pypi.python.org/pypi?:action=show_md5&digest='
@@ -40,7 +44,7 @@ def test_shasum():
             if name.startswith('_'):
                 continue
             sha1 = hashlib.sha1()
-            sha1.update(urllib2.urlopen(url).read())
+            sha1.update(urlopen(url).read())
             eq_(digest, sha1.hexdigest())
 
 
@@ -48,6 +52,6 @@ def test_md5_url_exists():
     for ball, md5sum in PYPI_DOWNLOADS.iteritems():
         url = PYPI_MD5_URL + md5sum
         try:
-            urllib2.urlopen(url)
-        except urllib2.HTTPError as e:
+            urlopen(url)
+        except HTTPError as e:
             assert False, "Failed to open %s: %s %s" % (url, type(e), e)
