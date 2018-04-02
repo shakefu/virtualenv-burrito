@@ -103,7 +103,7 @@ EOF
 
 
 if [[ -n "$(which python3)" ]]; then
-    pyver=$(python3 -c 'import platform, sys;sys.stdout.write(".".join(platform.python_version().split(".")[:2] + "\n")')
+    pyver=$(python3 -c 'import platform, sys;sys.stdout.write(".".join(platform.python_version().split(".")[:2]) + "\n")')
     pycmd="python3"
 else
     pyver=$(python -c 'import platform, sys;sys.stdout.write(".".join(platform.python_version().split(".")[:2]) + "\n")')
