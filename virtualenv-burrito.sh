@@ -104,8 +104,10 @@ EOF
 
 if [[ -n "$(which python3)" ]]; then
     pyver=$(python3 -c 'import platform;print ".".join(platform.python_version().split(".")[:2])')
+    pycmd="python3"
 else
     pyver=$(python -c 'import platform;print ".".join(platform.python_version().split(".")[:2])')
+    pycmd="python"
 fi
 mkdir -p $VENVBURRITO/{bin,libexec,lib/python$pyver/site-packages}
 test -d $HOME/.virtualenvs || mkdir $HOME/.virtualenvs
@@ -115,7 +117,7 @@ curl $MASTER_URL/virtualenv-burrito.py > $VENVBURRITO/bin/virtualenv-burrito
 chmod 755 $VENVBURRITO/bin/virtualenv-burrito
 cmd="virtualenv-burrito upgrade firstrun"
 echo -e "\nRunning: $cmd"
-$VENVBURRITO/bin/$(echo $cmd)
+$pycmd $VENVBURRITO/bin/$(echo $cmd)
 
 unset profile
 test -z "$exclude_profile" && modify_profile
