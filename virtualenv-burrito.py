@@ -3,8 +3,9 @@
 #
 #   virtualenv-burrito.py — manages the Virtualenv Burrito environment
 #
+from __future__ import print_function
 
-__version__ = "2.7.1"
+__version__ = "3.0.0"
 
 import sys
 import os
