@@ -83,7 +83,7 @@ def download(url, digest):
     if filehash.hexdigest() != digest:
         print ("\nThe file %s didn't look like we expected.\n"
                "It may have been moved or tampered with. You should tell me:"
-               " @brainsik." % name)
+               " @shakefu." % name)
         raise SystemExit(1)
 
     downloaded_file = tempfile.NamedTemporaryFile("wb", delete=False)

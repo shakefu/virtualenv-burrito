@@ -97,7 +97,7 @@ fi
 EOF
     else
         echo "Your shell profile could not be detected."
-        echo "Please contact @brainsik on Twitter or GitHub."
+        echo "Please contact @shakefu on Twitter or GitHub."
     fi
 }
 
