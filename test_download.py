@@ -50,9 +50,18 @@ def test_shasum():
 
 
 def test_md5_url_exists():
-    for ball, md5sum in PYPI_DOWNLOADS.iteritems():
+    for ball, md5sum in _items(PYPI_DOWNLOADS):
         url = PYPI_MD5_URL + md5sum
         try:
             urlopen(url)
         except HTTPError as e:
             assert False, "Failed to open %s: %s %s" % (url, type(e), e)
+
+
+def _items(obj):
+    try:
+        func = obj.iteritems
+    except:
+        func = obj.items
+
+    return func()
