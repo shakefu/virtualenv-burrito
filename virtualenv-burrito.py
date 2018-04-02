@@ -23,8 +23,8 @@ except ImportError:  # Python < 2.5
 
 try:
     from urllib2 import urlopen
-except ImportError:
-    from urllib import urlopen
+except:
+    from urllib.request import urlopen
 
 try:
     import subprocess

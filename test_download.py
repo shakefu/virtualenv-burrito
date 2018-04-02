@@ -5,8 +5,9 @@ import hashlib
 
 try:
     from urllib2 import urlopen, HTTPError
-except ImportError:
-    from urllib import urlopen, HTTPError
+except:
+    from urllib.request import urlopen
+    from urllib.error import HTTPError
 
 
 PYPI_MD5_URL = 'https://pypi.python.org/pypi?:action=show_md5&digest='
