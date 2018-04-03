@@ -193,8 +193,14 @@ def _get_versions():
         raise SystemExit(1)
 
     lines = fp.read()
+
+    # Python 3 decode
+    try:
+        lines = lines.decode('utf-8')
+    except:
+        pass
+
     lines = '\n'.split(lines)
-    lines = [l.decode('utf8') for l in lines]
 
     return csv.reader(lines)
 
