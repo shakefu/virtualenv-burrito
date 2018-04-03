@@ -185,6 +185,10 @@ def upgrade_package(filename, name, version):
 
 
 def _get_versions():
+    """
+    Return a CSV reader.
+
+    """
     try:
         fp = urlopen(VERSIONS_URL)
     except Exception as e:
