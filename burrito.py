@@ -204,7 +204,8 @@ def _get_versions():
     except:
         pass
 
-    lines = '\n'.split(lines)
+    lines = lines.strip()
+    lines = lines.split('\n')
 
     return csv.reader(lines)
 
