@@ -8,7 +8,7 @@ set -e
 
 VENVBURRITO="$HOME/.venvburrito"
 VENVBURRITO_esc="\$HOME/.venvburrito"
-MASTER_URL="https://raw.githubusercontent.com/shakefu/virtualenv-burrito/master"
+MASTER_URL="https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master"
 
 if [ -e "$VENVBURRITO" ]; then
     echo "Found existing $VENVBURRITO"
@@ -97,7 +97,7 @@ fi
 EOF
     else
         echo "Your shell profile could not be detected."
-        echo "Please contact @shakefu on Twitter or GitHub."
+        echo "Please contact @brainsik on Twitter or GitHub."
     fi
 }
 

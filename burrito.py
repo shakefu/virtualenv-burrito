@@ -36,7 +36,7 @@ except ImportError:  # Python < 2.4
 NAME = os.path.basename(__file__)
 VENVBURRITO = os.path.join(os.environ['HOME'], ".venvburrito")
 VENVBURRITO_LIB = os.path.join(VENVBURRITO, "lib")
-VERSIONS_URL = "https://raw.githubusercontent.com/shakefu/virtualenv-burrito/master/versions.csv"
+VERSIONS_URL = "https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/versions.csv"
 
 
 def get_python_maj_min_str():
@@ -84,7 +84,7 @@ def download(url, digest):
     if filehash.hexdigest() != digest:
         print("\nThe file %s didn't look like we expected.\n"
               "It may have been moved or tampered with. You should tell me:"
-              " @shakefu." % name)
+              " @brainsik." % name)
         raise SystemExit(1)
 
     downloaded_file = tempfile.NamedTemporaryFile("wb", delete=False)
