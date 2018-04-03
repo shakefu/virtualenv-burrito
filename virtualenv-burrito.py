@@ -184,15 +184,24 @@ def upgrade_package(filename, name, version):
         shutil.rmtree(tmp)
 
 
-def check_versions(selfcheck=True):
-    """Return packages which can be upgraded."""
+def _get_versions():
     try:
         fp = urlopen(VERSIONS_URL)
     except Exception as e:
         sys.stderr.write("\nERROR - Couldn't open versions file at %s: %s %s\n"
                          % (VERSIONS_URL, type(e), str(e)))
         raise SystemExit(1)
-    reader = csv.reader(fp)
+
+    lines = fp.read()
+    lines = '\n'.split(lines)
+    lines = [l.decode('utf8') for l in lines]
+
+    return csv.reader(lines)
+
+
+def check_versions(selfcheck=True):
+    """Return packages which can be upgraded."""
+    reader = _get_versions()
 
     has_update = []
     for name, version, url, digest in reader:
